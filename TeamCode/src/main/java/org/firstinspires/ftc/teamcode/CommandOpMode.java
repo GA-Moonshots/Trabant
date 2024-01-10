@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  */
 public abstract class CommandOpMode extends LinearOpMode {
 
+    Robot m_robot = new Trabant(Trabant.OpModeType.TELEOP);
     /**
      * Cancels all previous commands
      */
