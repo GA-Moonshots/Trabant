@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import org.firstinspires.ftc.teamcode.util.Robot;
+
 public class Trabant extends Robot {
     // enum to specify opmode type
     public enum OpModeType {
