@@ -16,7 +16,6 @@ import org.firstinspires.ftc.teamcode.Trabant;
  */
 public abstract class CommandOpMode extends LinearOpMode {
 
-    Robot m_robot = new Trabant(Trabant.OpModeType.TELEOP);
     /**
      * Cancels all previous commands
      */
