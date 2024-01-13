@@ -1,15 +1,22 @@
 package org.firstinspires.ftc.teamcode;
 
+import org.firstinspires.ftc.teamcode.autnomous.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.Robot;
 
+/**
+ * Primary robot file. This is where hardware and inputs are assembled
+ */
 public class Trabant extends Robot {
-    // enum to specify opmode type
+
+    // SUBSYSTEMS
+    public MecanumDrive drive;
+
+    /**
+     * This guides the state of the robot, like whether or not to listen to the controller
+     */
     public enum OpModeType {
         TELEOP, AUTO
-    }
-
-    public Trabant() {
-        this(OpModeType.TELEOP);
     }
 
     public Trabant(OpModeType type) {
@@ -20,8 +27,8 @@ public class Trabant extends Robot {
         }
     }
 
-    /*
-     * Initialize teleop or autonomous, depending on which is used
+    /**
+     * Initialize teleop or autonomous, depending on which enum option was passed to the constructor
      */
     public void initTele() {
         // initialize teleop-specific scheduler
