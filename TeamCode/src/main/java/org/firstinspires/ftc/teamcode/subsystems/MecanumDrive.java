@@ -34,7 +34,7 @@ public class MecanumDrive extends RoadRunnerDrive {
     public DistanceSensor rightDistance;
     public Camera camera;
     // USEFUL REFERENCES
-    private Trabant robot;
+    private final Trabant robot;
     public Telemetry telemetry;
 
     public MecanumDrive(Trabant robot, Pose2d pose) {
@@ -49,6 +49,20 @@ public class MecanumDrive extends RoadRunnerDrive {
         this.rearDistance = new DistanceSensor(robot.opMode, Constants.REAR_DIST_NAME);
         this.rightDistance = new DistanceSensor(robot.opMode, Constants.RIGHT_DIST_NAME);
         this.leftDistance = new DistanceSensor(robot.opMode, Constants.LEFT_DIST_NAME);
+    }
+
+    // --- FIELD CENTRIC HELPERS ---
+    public void toggleFieldCentric() {
+        isFieldCentric = !isFieldCentric;
+    }
+    public void makeRobotCentric() {
+        isFieldCentric = false;
+    }
+    public void makeFieldCentric() {
+        isFieldCentric = true;
+    }
+    public void resetFieldCentricTarget() {
+        fieldCentricTarget = getZAngle();
     }
 
     /**
@@ -147,6 +161,26 @@ public class MecanumDrive extends RoadRunnerDrive {
             drive(0.0, 0.0, 0.7 * Math.toRadians(robot.drive.getZAngle() - fieldCentricTarget));
         }
         stop();
+    }
+
+    /**
+     * @return the difference between the robot's current angle and the Zero Angle
+     */
+    public double getAngleDifferenceFromZero() {
+        double currentAngle = robot.drive.getZAngle(); // Get current angle
+        double angleDifference = currentAngle - fieldCentricTarget; // Calculate difference
+
+        // if the difference is greater than or equal to 360, subtract 360 to keep it within -180 to 180
+        if (angleDifference >= 360) {
+            angleDifference -= 360;
+        }
+
+        // if the difference is less than -360, add 360 to keep it within -180 to 180
+        if (angleDifference < -360) {
+            angleDifference += 360;
+        }
+
+        return angleDifference; // Return the normalized angle difference
     }
 
     /**

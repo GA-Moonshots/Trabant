@@ -3,17 +3,20 @@ package org.firstinspires.ftc.teamcode.commands;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandBase;
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Trabant;
 import org.firstinspires.ftc.teamcode.autnomous.RoadRunnerDrive;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 /**
- * MecanumDrive's default command, this is how we listen to the controller
+ * MecanumDrive's default teleOp command, this is default way the drive listens to the controller
  */
 public class DriveCommand extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final MecanumDrive drive;
+    private GamepadEx player1;
 
     /**
      * Store a reference to our robot
@@ -28,6 +31,7 @@ public class DriveCommand extends CommandBase {
     public DriveCommand(Trabant robot) {
         this.robot = robot;
         this.drive = robot.drive;
+        player1 = robot.player1;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(robot.drive);
     }
@@ -37,12 +41,25 @@ public class DriveCommand extends CommandBase {
         // Do you need to set up anything when the command gets first added to the scheduler?
     }
 
+    /**
+     * Helper function for applying dead zone
+     */
+    private double applyDeadZone(double input) {
+        return Math.abs(input) <= Constants.INPUT_THRESHOLD ? 0.0d : input;
+    }
+
     @Override
     public void execute() {
-        // -- PLAYER 1 --
 
+        // you can go digging for the opMode controller
+        double speedMod = robot.opMode.gamepad1.right_bumper ? 0.5 : 1; // slow mode
 
-        // -- PLAYER 2 --
+        double forward = applyDeadZone(player1.getLeftY());
+        double strafe = applyDeadZone(player1.getLeftX());
+        double turn = applyDeadZone(player1.getRightX());
+
+        // Drive the robot with adjusted inputs:
+        drive.drive(forward * speedMod, strafe * speedMod, turn * speedMod);
 
     }
 
@@ -50,6 +67,7 @@ public class DriveCommand extends CommandBase {
      * This function never ends
      * @return false
      */
+    @Override
     public boolean isFinished() { return false; }
 
     @Override

@@ -82,3 +82,18 @@ lint/tmp/
 
 .DS_Store
 /.idea
+
+# REPLIT IGNORES
+pom.xml
+replit.nix
+hamcrest-core-1.3.jar
+.breakpoints
+.classpath
+.project
+.replit
+org.eclipse.jdt.apt.core.prefs
+org.eclipse.m2e.core.prefs
+json-simple-1.1.1.jar
+junit-4.12.jar
+springboot-5.3.6.pom
+org.eclipse.jdt.core.prefs

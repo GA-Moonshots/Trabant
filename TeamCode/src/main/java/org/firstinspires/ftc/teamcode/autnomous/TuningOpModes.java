@@ -22,6 +22,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
+import org.firstinspires.ftc.teamcode.testmodes.LocalizationTest;
+import org.firstinspires.ftc.teamcode.testmodes.ManualFeedbackTuner;
 import org.firstinspires.ftc.teamcode.testmodes.SplineTest;
 
 import java.util.ArrayList;
@@ -66,10 +68,6 @@ public final class TuningOpModes {
                     ThreeDeadWheelLocalizer dl = (ThreeDeadWheelLocalizer) md.localizer;
                     parEncs.add(dl.par0);
                     parEncs.add(dl.par1);
-                    perpEncs.add(dl.perp);
-                } else if (md.localizer instanceof TwoDeadWheelLocalizer) {
-                    TwoDeadWheelLocalizer dl = (TwoDeadWheelLocalizer) md.localizer;
-                    parEncs.add(dl.par);
                     perpEncs.add(dl.perp);
                 } else {
                     throw new RuntimeException("unknown localizer: " + md.localizer.getClass().getName());
