@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autnomous;
+package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.DualNum;

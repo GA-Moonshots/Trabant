@@ -8,7 +8,6 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.autnomous.RoadRunnerDrive;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.DistanceSensor;
 
@@ -43,7 +42,7 @@ public class StrafeByDistance extends CommandBase {
     public void initialize() {
         timer.start();
 
-        RoadRunnerDrive d = new RoadRunnerDrive(robot.opMode.hardwareMap, drive.pose);
+        //RoadRunnerDrive d = new RoadRunnerDrive(robot.opMode.hardwareMap, drive.pose);
         Vector2d current = drive.pose.position;
         Vector2d targetPosition = new Vector2d(current.x + deltaX, current.y + deltaY);
 

@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-import com.acmerobotics.roadrunner.PoseVelocity2d;
-import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.autnomous.RoadRunnerDrive;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 /**
@@ -52,9 +49,9 @@ public class DriveCommand extends CommandBase {
     public void execute() {
 
         // you can go digging for the opMode controller
-        double speedMod = robot.opMode.gamepad1.right_bumper ? 0.5 : 1; // slow mode
+        double speedMod = robot.opMode.gamepad1.right_bumper ? 0.2 : 1; // slow mode
 
-        double forward = applyDeadZone(player1.getLeftY());
+        double forward = -applyDeadZone(player1.getLeftY());
         double strafe = applyDeadZone(player1.getLeftX());
         double turn = applyDeadZone(player1.getRightX());
 
@@ -64,7 +61,7 @@ public class DriveCommand extends CommandBase {
     }
 
     /**
-     * This function never ends
+     * This command never ends
      * @return false
      */
     @Override

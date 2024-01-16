@@ -3,8 +3,6 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -12,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.autnomous.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.autonomous.RoadRunnerDrive;
 import org.firstinspires.ftc.teamcode.Trabant;
 import org.firstinspires.ftc.teamcode.util.Camera;
 import org.firstinspires.ftc.teamcode.util.DistanceSensor;
@@ -49,6 +47,7 @@ public class MecanumDrive extends RoadRunnerDrive {
         this.rearDistance = new DistanceSensor(robot.opMode, Constants.REAR_DIST_NAME);
         this.rightDistance = new DistanceSensor(robot.opMode, Constants.RIGHT_DIST_NAME);
         this.leftDistance = new DistanceSensor(robot.opMode, Constants.LEFT_DIST_NAME);
+        this.resetFieldCentricTarget();
     }
 
     // --- FIELD CENTRIC HELPERS ---

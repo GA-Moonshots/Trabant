@@ -15,7 +15,6 @@ import org.firstinspires.ftc.teamcode.Trabant;
  * @author Jackson
  */
 public abstract class CommandOpMode extends LinearOpMode {
-
     /**
      * Cancels all previous commands
      */

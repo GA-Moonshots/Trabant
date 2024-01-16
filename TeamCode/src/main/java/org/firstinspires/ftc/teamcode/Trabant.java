@@ -85,13 +85,13 @@ public class Trabant extends Robot {
         }));
 
         Button bButton = new GamepadButton(player1, GamepadKeys.Button.B);
+        bButton.whenPressed(new InstantCommand(() -> {
+            drive.resetFieldCentricTarget();
+        }));
 
         Button xButton = new GamepadButton(player1, GamepadKeys.Button.X);
 
         Button yButton = new GamepadButton(player1, GamepadKeys.Button.Y);
-        yButton.whenPressed(new InstantCommand(() -> {
-            drive.resetFieldCentricTarget();
-        }));
     }
 
     /**
