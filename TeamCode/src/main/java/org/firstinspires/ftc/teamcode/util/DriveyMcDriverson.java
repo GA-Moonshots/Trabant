@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 /**
  * The primary operation file for the teleOp phase of the match
  */
-@TeleOp(name="Trabant")
+@TeleOp(name="TeleOp - Primary")
 public class DriveyMcDriverson extends CommandOpMode {
 
     /**

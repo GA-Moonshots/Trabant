@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.commands;
 
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -60,6 +61,7 @@ public class StrafeByDistance extends CommandBase {
 
         // Use the telemetryPacket with the action's run method:
         finished = !action.run(packet);
+        FtcDashboard.getInstance().sendTelemetryPacket(packet);
     }
 
     @Override

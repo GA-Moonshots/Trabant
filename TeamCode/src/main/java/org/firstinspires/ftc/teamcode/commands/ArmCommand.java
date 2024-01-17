@@ -1,19 +1,22 @@
 package org.firstinspires.ftc.teamcode.commands;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
-import org.firstinspires.ftc.teamcode.config.Constants;
 import org.firstinspires.ftc.teamcode.Trabant;
+import org.firstinspires.ftc.teamcode.config.Constants;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 /**
- * MecanumDrive's default teleOp command, this is default way the drive listens to the controller
+ * Arm's default teleOp command, this is default way the arm monitors to controller axis
  */
-public class DriveCommand extends CommandBase {
+public class ArmCommand extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final MecanumDrive drive;
-    private GamepadEx player1;
+    private final Arm arm;
+    private GamepadEx player2;
 
     /**
      * Store a reference to our robot
@@ -25,12 +28,12 @@ public class DriveCommand extends CommandBase {
      *
      * @param robot The robot instantiating this drive command
      */
-    public DriveCommand(Trabant robot) {
+    public ArmCommand(Trabant robot) {
         this.robot = robot;
-        this.drive = robot.drive;
-        player1 = robot.player1;
+        this.arm = robot.arm;
+        player2 = robot.player2;
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(robot.drive);
+        addRequirements(robot.arm);
     }
 
     @Override
@@ -48,15 +51,16 @@ public class DriveCommand extends CommandBase {
     @Override
     public void execute() {
 
-        // you can go digging for the opMode controller
-        double speedMod = robot.opMode.gamepad1.right_bumper ? 0.2 : 1; // slow mode
+        double armRotate = applyDeadZone(player2.getLeftY());
+        double elevatorStr = applyDeadZone(player2.getRightY());
 
-        double forward = -applyDeadZone(player1.getLeftY());
-        double strafe = applyDeadZone(player1.getLeftX());
-        double turn = applyDeadZone(player1.getRightX());
+        arm.setMotorPower(armRotate);
 
-        // Drive the robot with adjusted inputs:
-        drive.drive(forward * speedMod, strafe * speedMod, turn * speedMod);
+        // POST DATA
+        TelemetryPacket packet = new TelemetryPacket();
+        packet.put("Arm Pos", arm.getMotorPosition());
+        packet.put("Arm Power", arm.getMotorPower());
+        FtcDashboard.getInstance().sendTelemetryPacket(packet);
 
     }
 
@@ -69,6 +73,6 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted){
-        drive.stop();
+        arm.stop();
     }
 }

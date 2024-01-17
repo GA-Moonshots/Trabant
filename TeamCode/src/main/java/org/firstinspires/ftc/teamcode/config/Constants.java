@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.config;
 
 public class Constants {
 
@@ -16,6 +16,8 @@ public class Constants {
     public static final double ROLL_MAX = 0.72;
     public static final double ROLL_MIN = 0;
     public static final double ROLL_INC = 0.03;
+    public static final double ARM_MOTOR_kP = 0.05;
+    public static final double ARM_MOTOR_TOLERANCE = 13.6;
 
     // -------DRIVE--------
     // -------DRIVE--------

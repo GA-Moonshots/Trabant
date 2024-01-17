@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Trabant;
 /**
  * The primary operation file for the teleOp phase of the match
  */
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "Autonomous")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "Autonomous - Primary")
 public class AutoMcAutty extends CommandOpMode {
 
     /**

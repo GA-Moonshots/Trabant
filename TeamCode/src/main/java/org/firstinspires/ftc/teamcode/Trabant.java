@@ -11,12 +11,13 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.commands.RotateByDegree;
+import org.firstinspires.ftc.teamcode.commands.ArmMoveTo;
 import org.firstinspires.ftc.teamcode.commands.RotateToZero;
 import org.firstinspires.ftc.teamcode.commands.StrafeByDistance;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.ScanForProp;
 import org.firstinspires.ftc.teamcode.commands.TurnToProp;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.Robot;
 
@@ -31,15 +32,13 @@ public class Trabant extends Robot {
     public GamepadEx player1;
     public GamepadEx player2;
     public enum AprilTagToAlign {
-        LEFT,
-        CENTER,
-        RIGHT,
-        NONE
+        LEFT, CENTER, RIGHT, NONE
     }
     public AprilTagToAlign targetApril = AprilTagToAlign.NONE;
 
     // SUBSYSTEMS
     public MecanumDrive drive;
+    public Arm arm;
     public Telemetry telemetry;
 
 
@@ -77,21 +76,81 @@ public class Trabant extends Robot {
         drive = new MecanumDrive(this, new Pose2d(0,0,0));
         register(drive);
         drive.setDefaultCommand(new DriveCommand(this));
+        // start arm
+        arm = new Arm(this);
+        register(arm);
 
-        // PLAYER 1
-        Button aButton = new GamepadButton(player1, GamepadKeys.Button.A);
-        aButton.whenPressed(new InstantCommand(() -> {
+        /*
+                .__                                      ____
+        ______  |  |  _____   ___.__.  ____ _______     /_   |
+        \____ \ |  |  \__  \ <   |  |_/ __ \\_  __ \     |   |
+        |  |_> >|  |__ / __ \_\___  |\  ___/ |  | \/     |   |
+        |   __/ |____/(____  // ____| \___  >|__|        |___|
+        |__|               \/ \/          \/
+        */
+        Button aButtonP1 = new GamepadButton(player1, GamepadKeys.Button.A);
+        aButtonP1.whenPressed(new InstantCommand(() -> {
             drive.toggleFieldCentric();
         }));
 
-        Button bButton = new GamepadButton(player1, GamepadKeys.Button.B);
-        bButton.whenPressed(new InstantCommand(() -> {
+        Button bButtonP1 = new GamepadButton(player1, GamepadKeys.Button.B);
+        bButtonP1.whenPressed(new InstantCommand(() -> {
             drive.resetFieldCentricTarget();
         }));
 
-        Button xButton = new GamepadButton(player1, GamepadKeys.Button.X);
+        Button xButtonP1 = new GamepadButton(player1, GamepadKeys.Button.X);
+        Button yButtonP1 = new GamepadButton(player1, GamepadKeys.Button.Y);
+        Button dPadUpP1 = new GamepadButton(player1, GamepadKeys.Button.DPAD_UP);
+        Button dPadDownP1 = new GamepadButton(player1, GamepadKeys.Button.DPAD_DOWN);
+        Button dPadLeftP1 = new GamepadButton(player1, GamepadKeys.Button.DPAD_LEFT);
+        Button dPadRightP1 = new GamepadButton(player1, GamepadKeys.Button.DPAD_RIGHT);
 
-        Button yButton = new GamepadButton(player1, GamepadKeys.Button.Y);
+        /*
+                _                                    __
+               (_ )                                /'__`\
+         _ _    | |    _ _  _   _    __   _ __    (_)  ) )
+        ( '_`\  | |  /'_` )( ) ( ) /'__`\( '__)      /' /
+        | (_) ) | | ( (_| || (_) |(  ___/| |       /' /( )
+        | ,__/'(___)`\__,_)`\__, |`\____)(_)      (_____/'
+        | |                ( )_| |
+        (_)                `\___/'
+         */
+        Button aButtonP2 = new GamepadButton(player2, GamepadKeys.Button.A);
+        aButtonP2.whenPressed(new InstantCommand(() -> {
+            arm.travelMode();
+        }));
+
+        Button bButtonP2 = new GamepadButton(player2, GamepadKeys.Button.B);
+        bButtonP2.whenPressed(new InstantCommand(() -> {
+            arm.toggleOpen();
+        }));
+
+        Button xButtonP2 = new GamepadButton(player2, GamepadKeys.Button.X);
+        xButtonP2.whenHeld(new ArmMoveTo(this, ArmMoveTo.ArmPosition.GROUND));
+
+        Button yButtonP2 = new GamepadButton(player2, GamepadKeys.Button.Y);
+        yButtonP2.whenHeld(new ArmMoveTo(this, ArmMoveTo.ArmPosition.HIGH_DROP));
+
+        Button dPadUpP2 = new GamepadButton(player2, GamepadKeys.Button.DPAD_UP);
+        dPadUpP2.whileHeld(new InstantCommand(() -> {
+            arm.wristUp();
+        }));
+
+        Button dPadDownP2 = new GamepadButton(player2, GamepadKeys.Button.DPAD_DOWN);
+        dPadDownP2.whileHeld(new InstantCommand(() -> {
+            arm.wristDown();
+        }));
+
+        Button dPadLeftP2 = new GamepadButton(player2, GamepadKeys.Button.DPAD_LEFT);
+        dPadLeftP2.whileHeld(new InstantCommand(() -> {
+            arm.rollNegative();
+        }));
+
+        Button dPadRightP2 = new GamepadButton(player2, GamepadKeys.Button.DPAD_RIGHT);
+        dPadRightP2.whileHeld(new InstantCommand(() -> {
+            arm.rollPositive();
+        }));
+
     }
 
     /**
@@ -149,7 +208,11 @@ public class Trabant extends Robot {
         new SequentialCommandGroup(
                 new ScanForProp(this,0,20, 4),
                 new TurnToProp(this, 1),
-                // new ReleaseRetractCommand(this),
+                new InstantCommand(() -> {
+                    arm.openClaw();
+                    opMode.sleep(25);
+                    arm.travelMode();
+                }),
                 new StrafeByDistance(this, 0, -2, 0.5),
                 new RotateToZero(this, 2)
         ).schedule();
