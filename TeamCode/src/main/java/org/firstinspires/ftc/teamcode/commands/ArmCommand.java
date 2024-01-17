@@ -23,11 +23,7 @@ public class ArmCommand extends CommandBase {
      */
     private final Trabant robot;
 
-    /**
-     * Establishes our drive command with references and registering our required subsystem
-     *
-     * @param robot The robot instantiating this drive command
-     */
+
     public ArmCommand(Trabant robot) {
         this.robot = robot;
         this.arm = robot.arm;
