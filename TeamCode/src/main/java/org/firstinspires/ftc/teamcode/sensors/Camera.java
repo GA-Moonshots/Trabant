@@ -31,7 +31,7 @@
  *
  */
 
-package org.firstinspires.ftc.teamcode.util;
+package org.firstinspires.ftc.teamcode.sensors;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -41,7 +41,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.Exposur
 import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.GainControl;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.teamcode.config.Constants;
+import org.firstinspires.ftc.teamcode.config.HardwareNames;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -57,7 +57,7 @@ public class Camera {
         aprilTag = new AprilTagProcessor.Builder()
                 .setOutputUnits(DistanceUnit.INCH, AngleUnit.DEGREES)
                 .build();
-        WebcamName name = hardwareMap.get(WebcamName.class, Constants.WEBCAM_NAME);
+        WebcamName name = hardwareMap.get(WebcamName.class, HardwareNames.WEBCAM_NAME);
         visionPortal = new VisionPortal.Builder()
                 .setCamera(name)
                 .addProcessor(aprilTag)

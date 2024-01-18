@@ -22,6 +22,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
+import org.firstinspires.ftc.teamcode.sensors.ThreeDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.testmodes.LocalizationTest;
 import org.firstinspires.ftc.teamcode.testmodes.ManualFeedbackTuner;
 import org.firstinspires.ftc.teamcode.testmodes.SplineTest;

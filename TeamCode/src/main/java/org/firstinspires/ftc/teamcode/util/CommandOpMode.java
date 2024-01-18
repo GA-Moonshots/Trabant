@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.util;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.Robot;
 import org.firstinspires.ftc.teamcode.Trabant;
 
@@ -45,6 +48,7 @@ public abstract class CommandOpMode extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         initialize();
 
         waitForStart();
@@ -52,6 +56,8 @@ public abstract class CommandOpMode extends LinearOpMode {
         // run the scheduler
         while (!isStopRequested() && opModeIsActive()) {
             run();
+            telemetry.addData("hi", "hi");
+            telemetry.update();
         }
         reset();
     }

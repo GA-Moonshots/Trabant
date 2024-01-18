@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.config;
 
-public class Constants {
-
+public class HardwareNames {
     // ----ARM VARIABLES----
     public static final int ARM_UP_POSITION = -1000;
     public static final int ARM_DOWN_POSITION = 0;
@@ -58,6 +57,10 @@ public class Constants {
     public static final String RIGHT_BACK_NAME = "rightBack";
     public static final String ARM_MOTOR_NAME = "arm";
     public static final String ELEVATOR_MOTOR_NAME = "elevator";
+    // encoder aliases
+    public static final String LEFT_ODOMETRY_NAME = LEFT_FRONT_NAME;
+    public static final String RIGHT_ODOMETRY_NAME = LEFT_BACK_NAME;
+    public static final String CENTER_ODOMETRY_NAME = RIGHT_FRONT_NAME;
 
     // --------- SERVO NAMES ---------
     public static final String WRIST_SERVO_NAME = "wrist";

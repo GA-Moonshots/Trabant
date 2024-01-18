@@ -20,7 +20,7 @@ public class DriveyMcDriverson extends CommandOpMode {
          all of our buttons are bound to commands and this class's parent, CommandOpMode, will
          continuously run any scheduled commands. We now slide into the WPILib style.
          */
-        Robot m_robot = new Trabant(Trabant.OpModeType.TELEOP, this);
+        Robot m_robot = new Trabant(this);
     }
 
 }

@@ -10,7 +10,7 @@ import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Trabant;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
-import org.firstinspires.ftc.teamcode.util.DistanceSensor;
+import org.firstinspires.ftc.teamcode.sensors.DistanceSensor;
 
 public class StrafeByDistance extends CommandBase {
 

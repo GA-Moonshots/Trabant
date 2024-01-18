@@ -4,7 +4,7 @@ package org.firstinspires.ftc.teamcode.commands;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.util.DistanceSensor;
+import org.firstinspires.ftc.teamcode.sensors.DistanceSensor;
 
 /**
  * Slight tweak to the AutoStrafeCommand

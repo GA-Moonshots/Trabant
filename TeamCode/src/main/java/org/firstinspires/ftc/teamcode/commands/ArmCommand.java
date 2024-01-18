@@ -6,9 +6,8 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.config.Constants;
+import org.firstinspires.ftc.teamcode.config.HardwareNames;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 /**
  * Arm's default teleOp command, this is default way the arm monitors to controller axis
@@ -41,7 +40,7 @@ public class ArmCommand extends CommandBase {
      * Helper function for applying dead zone
      */
     private double applyDeadZone(double input) {
-        return Math.abs(input) <= Constants.INPUT_THRESHOLD ? 0.0d : input;
+        return Math.abs(input) <= HardwareNames.INPUT_THRESHOLD ? 0.0d : input;
     }
 
     @Override

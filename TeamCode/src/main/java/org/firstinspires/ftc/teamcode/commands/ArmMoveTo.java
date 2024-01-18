@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.config.Constants;
+import org.firstinspires.ftc.teamcode.config.HardwareNames;
 import org.firstinspires.ftc.teamcode.Trabant;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 
@@ -50,9 +50,9 @@ public class ArmMoveTo extends CommandBase {
     public void initialize() {
         // CALCULATE TARGET AND SET POSITION
         if(requestedPos == ArmPosition.GROUND){
-            target = Constants.ARM_DOWN_POSITION;
+            target = HardwareNames.ARM_DOWN_POSITION;
         }else{
-            target = Constants.ARM_UP_POSITION;
+            target = HardwareNames.ARM_UP_POSITION;
         }
 
         arm.motor.setTargetPosition(target);
@@ -60,7 +60,7 @@ public class ArmMoveTo extends CommandBase {
 
     @Override
     public void execute() {
-        arm.motor.set(Constants.ARM_MOTOR_STRENGTH);
+        arm.motor.set(HardwareNames.ARM_MOTOR_STRENGTH);
         // POST DATA
         TelemetryPacket packet = new TelemetryPacket();
         packet.put("Arm Pos", arm.getMotorPosition());

@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.ScanForProp;
 import org.firstinspires.ftc.teamcode.commands.TurnToProp;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.DarkDrive;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.Robot;
 
@@ -39,7 +40,6 @@ public class Trabant extends Robot {
     // SUBSYSTEMS
     public MecanumDrive drive;
     public Arm arm;
-    public Telemetry telemetry;
 
 
     /**
@@ -51,21 +51,19 @@ public class Trabant extends Robot {
 
     /**
      * Welcome to the Command pattern. Here we assemble the robot and kick-off the command
-     * @param type Select TeleOp or Auto
      * @param opMode The selected operation mode
      */
-    public Trabant(OpModeType type, LinearOpMode opMode) {
+    public Trabant(LinearOpMode opMode) {
         this.opMode = opMode;
-        this.telemetry = opMode.telemetry;
         player1 = new GamepadEx(opMode.gamepad1);
         player2 = new GamepadEx(opMode.gamepad2);
 
+        initTele();
+    }
 
-        if (type == OpModeType.TELEOP) {
-            initTele();
-        } else {
-            initAuto();
-        }
+    public Trabant(LinearOpMode opMode, boolean isRed, boolean isLeft, boolean goForBoard) {
+        this.opMode = opMode;
+        initAuto(isRed, isLeft, goForBoard);
     }
 
     /**
@@ -156,36 +154,7 @@ public class Trabant extends Robot {
     /**
      * Query user for starting position and call the corresponding commands
      */
-    public void initAuto() {
-
-        // QUERY USER TO DETERMINE OUR STARTING COORDINATES
-        boolean isLeft = false;
-        boolean isRed = false;
-        boolean goForBoard = false;
-        boolean gotoOpposite = false;
-        // give player time to enter selection
-        while(opMode.opModeInInit()) {
-            // press X for blue and B for red
-            if (opMode.gamepad1.x)
-                isRed = false;
-            else if (opMode.gamepad1.b && !opMode.gamepad1.start)
-                isRed = true;
-            // press dpad LEFT for left and RIGHT for right
-            if (opMode.gamepad1.dpad_left)
-                isLeft = true;
-            else if (opMode.gamepad1.dpad_right)
-                isLeft = false;
-            // press Y to go for 45 and A just to park
-            if (opMode.gamepad1.y)
-                goForBoard = true;
-            else if (opMode.gamepad1.a && !opMode.gamepad1.start)
-                goForBoard = false;
-            // DISPLAY SELECTION
-            telemetry.addData("Position", "%s Team, %s Side", isRed ? "Red" : "Blue", isLeft ? "Left" : "Right");
-            telemetry.addData("Target Points", "%s", goForBoard ? "45" : "25");
-            telemetry.update();
-        }
-
+    public void initAuto(boolean isRed, boolean isLeft, boolean goForBoard) {
         // TODO: Calculate pose for each of the four starting positions
         Pose2d start;
         // RED LEFT

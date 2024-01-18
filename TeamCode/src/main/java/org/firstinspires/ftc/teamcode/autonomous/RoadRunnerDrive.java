@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.teamcode.config.Constants;
+import org.firstinspires.ftc.teamcode.config.HardwareNames;
 import org.firstinspires.ftc.teamcode.autonomous.messages.DriveCommandMessage;
 import org.firstinspires.ftc.teamcode.autonomous.messages.MecanumCommandMessage;
 import org.firstinspires.ftc.teamcode.autonomous.messages.MecanumEncodersMessage;
@@ -204,10 +204,10 @@ public class RoadRunnerDrive extends SubsystemBase {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        leftFront = hardwareMap.get(DcMotorEx.class, Constants.LEFT_FRONT_NAME);
-        leftBack = hardwareMap.get(DcMotorEx.class, Constants.LEFT_BACK_NAME);
-        rightBack = hardwareMap.get(DcMotorEx.class, Constants.RIGHT_BACK_NAME);
-        rightFront = hardwareMap.get(DcMotorEx.class, Constants.RIGHT_FRONT_NAME);
+        leftFront = hardwareMap.get(DcMotorEx.class, HardwareNames.LEFT_FRONT_NAME);
+        leftBack = hardwareMap.get(DcMotorEx.class, HardwareNames.LEFT_BACK_NAME);
+        rightBack = hardwareMap.get(DcMotorEx.class, HardwareNames.RIGHT_BACK_NAME);
+        rightFront = hardwareMap.get(DcMotorEx.class, HardwareNames.RIGHT_FRONT_NAME);
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -219,7 +219,7 @@ public class RoadRunnerDrive extends SubsystemBase {
 
         // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
-        imu = hardwareMap.get(IMU.class, Constants.IMU_NAME);
+        imu = hardwareMap.get(IMU.class, HardwareNames.IMU_NAME);
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 PARAMS.logoFacingDirection, PARAMS.usbFacingDirection));
         imu.initialize(parameters);
