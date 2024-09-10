@@ -9,11 +9,10 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.teamcode.config.HardwareNames;
-import org.firstinspires.ftc.teamcode.autonomous.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.util.HardwareNames;
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.sensors.Camera;
-import org.firstinspires.ftc.teamcode.sensors.DistanceSensor;
+import org.firstinspires.ftc.teamcode.util.sensors.Camera;
+import org.firstinspires.ftc.teamcode.util.sensors.DistanceSensor;
 
 /**
  * We extend RoadRunner's mecanum drive. That file needs our motor instantiations

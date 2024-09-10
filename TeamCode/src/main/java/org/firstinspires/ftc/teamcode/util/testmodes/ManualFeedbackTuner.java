@@ -1,13 +1,12 @@
-package org.firstinspires.ftc.teamcode.testmodes;
+package org.firstinspires.ftc.teamcode.util.testmodes;
 
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.autonomous.RoadRunnerDrive;
-import org.firstinspires.ftc.teamcode.sensors.ThreeDeadWheelLocalizer;
-import org.firstinspires.ftc.teamcode.autonomous.TuningOpModes;
-import org.firstinspires.ftc.teamcode.config.OdometryConfig;
+import org.firstinspires.ftc.teamcode.subsystems.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.util.sensors.ThreeDeadWheelLocalizer;
+import org.firstinspires.ftc.teamcode.util.OdometryConfig;
 
 
 public final class ManualFeedbackTuner extends LinearOpMode {

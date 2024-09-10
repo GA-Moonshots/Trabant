@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -18,7 +20,6 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.ScanForProp;
 import org.firstinspires.ftc.teamcode.commands.TurnToProp;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.DarkDrive;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.Robot;
 
@@ -30,6 +31,7 @@ public class Trabant extends Robot {
 
     // INSTANCE VARIABLES
     public LinearOpMode opMode;
+    public Telemetry telemetry;
     public GamepadEx player1;
     public GamepadEx player2;
     public enum AprilTagToAlign {
@@ -55,6 +57,8 @@ public class Trabant extends Robot {
      */
     public Trabant(LinearOpMode opMode) {
         this.opMode = opMode;
+        // DISABLE FTC DASHBOARD FOR COMPETITION
+        telemetry = new MultipleTelemetry(opMode.telemetry, FtcDashboard.getInstance().getTelemetry());
         player1 = new GamepadEx(opMode.gamepad1);
         player2 = new GamepadEx(opMode.gamepad2);
 
@@ -63,6 +67,8 @@ public class Trabant extends Robot {
 
     public Trabant(LinearOpMode opMode, boolean isRed, boolean isLeft, boolean goForBoard) {
         this.opMode = opMode;
+        // DISABLE FTC DASHBOARD FOR COMPETITION
+        telemetry = new MultipleTelemetry(opMode.telemetry, FtcDashboard.getInstance().getTelemetry());
         initAuto(isRed, isLeft, goForBoard);
     }
 

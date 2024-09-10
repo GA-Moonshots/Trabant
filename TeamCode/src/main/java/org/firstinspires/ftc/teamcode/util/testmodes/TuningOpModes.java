@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autonomous;
+package org.firstinspires.ftc.teamcode.util.testmodes;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.reflection.ReflectionConfig;
@@ -22,10 +22,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
-import org.firstinspires.ftc.teamcode.sensors.ThreeDeadWheelLocalizer;
-import org.firstinspires.ftc.teamcode.testmodes.LocalizationTest;
-import org.firstinspires.ftc.teamcode.testmodes.ManualFeedbackTuner;
-import org.firstinspires.ftc.teamcode.testmodes.SplineTest;
+import org.firstinspires.ftc.teamcode.subsystems.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.util.sensors.ThreeDeadWheelLocalizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

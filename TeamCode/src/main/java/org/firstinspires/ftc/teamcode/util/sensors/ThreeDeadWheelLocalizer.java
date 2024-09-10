@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode.sensors;
+package org.firstinspires.ftc.teamcode.util.sensors;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.DualNum;
 import com.acmerobotics.roadrunner.Time;
 import com.acmerobotics.roadrunner.Twist2dDual;
@@ -14,9 +13,9 @@ import com.acmerobotics.roadrunner.ftc.RawEncoder;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.autonomous.Localizer;
-import org.firstinspires.ftc.teamcode.config.HardwareNames;
-import org.firstinspires.ftc.teamcode.config.OdometryConfig;
+import org.firstinspires.ftc.teamcode.util.autonomous.Localizer;
+import org.firstinspires.ftc.teamcode.util.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.OdometryConfig;
 
 @Config
 public final class ThreeDeadWheelLocalizer implements Localizer {

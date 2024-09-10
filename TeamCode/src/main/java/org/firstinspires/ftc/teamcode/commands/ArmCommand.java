@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.config.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.HardwareNames;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 
 /**

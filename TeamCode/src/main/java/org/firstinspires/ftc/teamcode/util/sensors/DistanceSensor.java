@@ -30,7 +30,7 @@
  *
  */
 
-package org.firstinspires.ftc.teamcode.sensors;
+package org.firstinspires.ftc.teamcode.util.sensors;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

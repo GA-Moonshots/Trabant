@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autonomous.messages;
+package org.firstinspires.ftc.teamcode.util.autonomous.messages;
 
 public final class MecanumCommandMessage {
     public long timestamp;

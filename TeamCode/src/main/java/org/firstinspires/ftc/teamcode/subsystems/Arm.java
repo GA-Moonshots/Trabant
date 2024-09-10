@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.config.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.HardwareNames;
 import org.firstinspires.ftc.teamcode.Trabant;
 
 import java.util.Locale;
