@@ -9,11 +9,11 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Mecanum;
 
 public class TurnToProp extends CommandBase {
 
-    private final MecanumDrive drive;
+    private final Mecanum drive;
     private final Trabant robot;
     protected final double timeout;
     /**

@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.util.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.Trabant;
 
 import java.util.Locale;
@@ -20,8 +20,8 @@ public class Arm extends SubsystemBase {
     private final Servo wristServo, openServo, rollServo;
     public final MotorEx motor;
     // STATE VARIABLES
-    private double wristAng = HardwareNames.WRIST_MIN;
-    private double rollPos = HardwareNames.ROLL_MAX;
+    private double wristAng = Constants.WRIST_MIN;
+    private double rollPos = Constants.ROLL_MAX;
     private boolean isOpen = false;
     private int offset = 0;
 
@@ -30,18 +30,18 @@ public class Arm extends SubsystemBase {
         HardwareMap hardwareMap = robot.opMode.hardwareMap;
 
         // shoulder motor
-        this.motor = new MotorEx(hardwareMap, HardwareNames.ARM_MOTOR_NAME);
+        this.motor = new MotorEx(hardwareMap, Constants.ARM_MOTOR_NAME);
         motor.setRunMode(Motor.RunMode.PositionControl);
         motor.setInverted(true);
-        motor.setPositionCoefficient(HardwareNames.ARM_MOTOR_kP);
-        motor.setPositionTolerance(HardwareNames.ARM_MOTOR_TOLERANCE);
+        motor.setPositionCoefficient(Constants.ARM_MOTOR_kP);
+        motor.setPositionTolerance(Constants.ARM_MOTOR_TOLERANCE);
 
         // servos
-        wristServo = hardwareMap.get(Servo.class, HardwareNames.WRIST_SERVO_NAME);
-        openServo = hardwareMap.get(Servo.class, HardwareNames.OPEN_SERVO_NAME);
-        rollServo = hardwareMap.get(Servo.class, HardwareNames.ROLL_SERVO_NAME);
+        wristServo = hardwareMap.get(Servo.class, Constants.WRIST_SERVO_NAME);
+        openServo = hardwareMap.get(Servo.class, Constants.OPEN_SERVO_NAME);
+        rollServo = hardwareMap.get(Servo.class, Constants.ROLL_SERVO_NAME);
         wristServo.setPosition(wristAng);
-        openServo.setPosition(HardwareNames.CLAW_CLOSED_POS);
+        openServo.setPosition(Constants.CLAW_CLOSED_POS);
         rollServo.setPosition(rollPos);
     }
 
@@ -52,26 +52,26 @@ public class Arm extends SubsystemBase {
         wristAng = 0;
     }
     public void wristUp() {
-        wristAng -= HardwareNames.WRIST_INC;
-        wristAng = Range.clip(wristAng, HardwareNames.WRIST_MIN, HardwareNames.WRIST_MAX);
+        wristAng -= Constants.WRIST_INC;
+        wristAng = Range.clip(wristAng, Constants.WRIST_MIN, Constants.WRIST_MAX);
         wristServo.setPosition(wristAng);
     }
     public void wristTo(double wristToMove) {
-        wristToMove = Range.clip(wristToMove, HardwareNames.WRIST_MIN, HardwareNames.WRIST_MAX);
+        wristToMove = Range.clip(wristToMove, Constants.WRIST_MIN, Constants.WRIST_MAX);
         wristServo.setPosition(wristToMove);
         wristAng = wristToMove;
     }
     public void wristDown() {
-        wristAng += HardwareNames.WRIST_INC;
-        wristAng = Range.clip(wristAng, HardwareNames.WRIST_MIN, HardwareNames.WRIST_MAX);
+        wristAng += Constants.WRIST_INC;
+        wristAng = Range.clip(wristAng, Constants.WRIST_MIN, Constants.WRIST_MAX);
         wristServo.setPosition(wristAng);
     }
     public void openClaw() {
-        openServo.setPosition(HardwareNames.CLAW_OPEN_POS);
+        openServo.setPosition(Constants.CLAW_OPEN_POS);
         isOpen = true;
     }
     public void closeClaw() {
-        openServo.setPosition(HardwareNames.CLAW_CLOSED_POS);
+        openServo.setPosition(Constants.CLAW_CLOSED_POS);
         isOpen = false;
     }
     public void toggleOpen() {
@@ -83,21 +83,21 @@ public class Arm extends SubsystemBase {
     }
     public void toggleRoll() {
         if(rollServo.getPosition() >= .5){
-            rollServo.setPosition(HardwareNames.ROLL_MIN);
-            rollPos = HardwareNames.ROLL_MIN;
+            rollServo.setPosition(Constants.ROLL_MIN);
+            rollPos = Constants.ROLL_MIN;
         } else{
-            rollServo.setPosition(HardwareNames.ROLL_MAX);
-            rollPos = HardwareNames.ROLL_MAX;
+            rollServo.setPosition(Constants.ROLL_MAX);
+            rollPos = Constants.ROLL_MAX;
         }
     }
     public void rollPositive() {
-        rollPos +=  HardwareNames.ROLL_INC;
-        if(rollPos > HardwareNames.ROLL_MAX) rollPos = HardwareNames.ROLL_MAX;
+        rollPos +=  Constants.ROLL_INC;
+        if(rollPos > Constants.ROLL_MAX) rollPos = Constants.ROLL_MAX;
         rollServo.setPosition(rollPos);
     }
     public void rollNegative() {
-        rollPos -=  HardwareNames.ROLL_INC;
-        if(rollPos < HardwareNames.ROLL_MIN) rollPos = HardwareNames.ROLL_MIN;
+        rollPos -=  Constants.ROLL_INC;
+        if(rollPos < Constants.ROLL_MIN) rollPos = Constants.ROLL_MIN;
         rollServo.setPosition(rollPos);
     }
 

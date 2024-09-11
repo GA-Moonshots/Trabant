@@ -9,12 +9,12 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Mecanum;
 import org.firstinspires.ftc.teamcode.util.sensors.DistanceSensor;
 
 public class StrafeByDistance extends CommandBase {
 
-    protected final MecanumDrive drive;
+    protected final Mecanum drive;
     protected final Trabant robot;
     private final DistanceSensor leftDistance, rightDistance;
     private final double deltaX, deltaY;

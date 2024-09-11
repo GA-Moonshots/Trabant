@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.util.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 
 /**
@@ -40,7 +40,7 @@ public class ArmCommand extends CommandBase {
      * Helper function for applying dead zone
      */
     private double applyDeadZone(double input) {
-        return Math.abs(input) <= HardwareNames.INPUT_THRESHOLD ? 0.0d : input;
+        return Math.abs(input) <= Constants.INPUT_THRESHOLD ? 0.0d : input;
     }
 
     @Override

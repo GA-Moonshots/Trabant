@@ -16,11 +16,11 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.commands.ArmMoveTo;
 import org.firstinspires.ftc.teamcode.commands.RotateToZero;
 import org.firstinspires.ftc.teamcode.commands.StrafeByDistance;
-import org.firstinspires.ftc.teamcode.commands.DriveCommand;
+import org.firstinspires.ftc.teamcode.commands.Drive;
 import org.firstinspires.ftc.teamcode.commands.ScanForProp;
 import org.firstinspires.ftc.teamcode.commands.TurnToProp;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Mecanum;
 import org.firstinspires.ftc.teamcode.util.Robot;
 
 
@@ -40,7 +40,7 @@ public class Trabant extends Robot {
     public AprilTagToAlign targetApril = AprilTagToAlign.NONE;
 
     // SUBSYSTEMS
-    public MecanumDrive drive;
+    public Mecanum drive;
     public Arm arm;
 
 
@@ -77,9 +77,9 @@ public class Trabant extends Robot {
      */
     public void initTele() {
         // throw-away pose because we're not localizing anymore
-        drive = new MecanumDrive(this, new Pose2d(0,0,0));
+        drive = new Mecanum(this, new Pose2d(0,0,0));
         register(drive);
-        drive.setDefaultCommand(new DriveCommand(this));
+        drive.setDefaultCommand(new Drive(this));
         // start arm
         arm = new Arm(this);
         register(arm);
@@ -176,7 +176,7 @@ public class Trabant extends Robot {
         else
             start = new Pose2d(new Vector2d(0, 0), 0.0);
 
-        drive = new MecanumDrive(this, start);
+        drive = new Mecanum(this, start);
         register(drive);
 
         // locate prop, drop piece, withdraw and straighten out

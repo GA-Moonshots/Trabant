@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.teamcode.util.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.Trabant;
 import org.firstinspires.ftc.teamcode.util.sensors.Camera;
 import org.firstinspires.ftc.teamcode.util.sensors.DistanceSensor;
@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.util.sensors.DistanceSensor;
 /**
  * We extend RoadRunner's mecanum drive. That file needs our motor instantiations
  */
-public class MecanumDrive extends RoadRunnerDrive {
+public class Mecanum extends RoadRunner {
 
     // INSTANCE VARIABLES
     private boolean isTargetSet = false;
@@ -34,7 +34,7 @@ public class MecanumDrive extends RoadRunnerDrive {
     private final Trabant robot;
     public Telemetry telemetry;
 
-    public MecanumDrive(Trabant robot, Pose2d pose) {
+    public Mecanum(Trabant robot, Pose2d pose) {
         // setup the RoadRunner parent class
         super(robot.opMode.hardwareMap, pose);
         // convenience references
@@ -43,9 +43,9 @@ public class MecanumDrive extends RoadRunnerDrive {
         // sensors
         this.camera = new Camera(robot.opMode.hardwareMap, robot.opMode.telemetry);
         // instantiate distance sensors using our wrapper
-        this.rearDistance = new DistanceSensor(robot.opMode, HardwareNames.REAR_DIST_NAME);
-        this.rightDistance = new DistanceSensor(robot.opMode, HardwareNames.RIGHT_DIST_NAME);
-        this.leftDistance = new DistanceSensor(robot.opMode, HardwareNames.LEFT_DIST_NAME);
+        this.rearDistance = new DistanceSensor(robot.opMode, Constants.REAR_DIST_NAME);
+        this.rightDistance = new DistanceSensor(robot.opMode, Constants.RIGHT_DIST_NAME);
+        this.leftDistance = new DistanceSensor(robot.opMode, Constants.LEFT_DIST_NAME);
         this.resetFieldCentricTarget();
     }
 
@@ -84,7 +84,7 @@ public class MecanumDrive extends RoadRunnerDrive {
         } else if(telemetry != null)
             telemetry.addData("Mode", "Robot Centric");
 
-        isGyroLocked = turn <= HardwareNames.INPUT_THRESHOLD;
+        isGyroLocked = turn <= Constants.INPUT_THRESHOLD;
         if(isGyroLocked && !isTargetSet) {
             gyroTarget = getYAngle();
             isTargetSet = true;
@@ -101,7 +101,7 @@ public class MecanumDrive extends RoadRunnerDrive {
         double leftBackPower = -forward - strafe + turn;
         double rightBackPower = forward - strafe + turn;
 
-        double powerScale = HardwareNames.MOTOR_MAX_SPEED * Math.max(1,
+        double powerScale = Constants.MOTOR_MAX_SPEED * Math.max(1,
                 Math.max(
                         Math.max(
                                 Math.abs(leftFrontPower),
@@ -136,10 +136,10 @@ public class MecanumDrive extends RoadRunnerDrive {
      * Clips and executes given motor speeds
      */
     protected void drive(double m1, double m2, double m3, double m4) {
-        leftFront.setPower(Range.clip(m1, -HardwareNames.MOTOR_MAX_SPEED, HardwareNames.MOTOR_MAX_SPEED));
-        rightFront.setPower(Range.clip(m2, -HardwareNames.MOTOR_MAX_SPEED, HardwareNames.MOTOR_MAX_SPEED));
-        leftBack.setPower(Range.clip(m3, -HardwareNames.MOTOR_MAX_SPEED, HardwareNames.MOTOR_MAX_SPEED));
-        rightBack.setPower(Range.clip(m4, -HardwareNames.MOTOR_MAX_SPEED, HardwareNames.MOTOR_MAX_SPEED));
+        leftFront.setPower(Range.clip(m1, -Constants.MOTOR_MAX_SPEED, Constants.MOTOR_MAX_SPEED));
+        rightFront.setPower(Range.clip(m2, -Constants.MOTOR_MAX_SPEED, Constants.MOTOR_MAX_SPEED));
+        leftBack.setPower(Range.clip(m3, -Constants.MOTOR_MAX_SPEED, Constants.MOTOR_MAX_SPEED));
+        rightBack.setPower(Range.clip(m4, -Constants.MOTOR_MAX_SPEED, Constants.MOTOR_MAX_SPEED));
     }
 
     public void stop() {

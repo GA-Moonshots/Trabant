@@ -22,7 +22,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
-import org.firstinspires.ftc.teamcode.subsystems.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.subsystems.RoadRunner;
 import org.firstinspires.ftc.teamcode.util.sensors.ThreeDeadWheelLocalizer;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.List;
 
 public final class TuningOpModes {
 
-    public static final Class<?> DRIVE_CLASS = RoadRunnerDrive.class;
+    public static final Class<?> DRIVE_CLASS = RoadRunner.class;
 
     public static final String GROUP = "quickstart";
     public static final boolean DISABLED = false;
@@ -51,14 +51,14 @@ public final class TuningOpModes {
         if (DISABLED) return;
 
         DriveViewFactory dvf;
-        if (DRIVE_CLASS.equals(RoadRunnerDrive.class)) {
+        if (DRIVE_CLASS.equals(RoadRunner.class)) {
             dvf = hardwareMap -> {
-                RoadRunnerDrive md = new RoadRunnerDrive(hardwareMap, new Pose2d(0, 0, 0));
+                RoadRunner md = new RoadRunner(hardwareMap, new Pose2d(0, 0, 0));
 
                 List<Encoder> leftEncs = new ArrayList<>(), rightEncs = new ArrayList<>();
                 List<Encoder> parEncs = new ArrayList<>(), perpEncs = new ArrayList<>();
-                if (md.localizer instanceof RoadRunnerDrive.DriveLocalizer) {
-                    RoadRunnerDrive.DriveLocalizer dl = (RoadRunnerDrive.DriveLocalizer) md.localizer;
+                if (md.localizer instanceof RoadRunner.DriveLocalizer) {
+                    RoadRunner.DriveLocalizer dl = (RoadRunner.DriveLocalizer) md.localizer;
                     leftEncs.add(dl.leftFront);
                     leftEncs.add(dl.leftBack);
                     rightEncs.add(dl.rightFront);
@@ -74,10 +74,10 @@ public final class TuningOpModes {
 
                 return new DriveView(
                     DriveType.MECANUM,
-                        RoadRunnerDrive.PARAMS.inPerTick,
-                        RoadRunnerDrive.PARAMS.maxWheelVel,
-                        RoadRunnerDrive.PARAMS.minProfileAccel,
-                        RoadRunnerDrive.PARAMS.maxProfileAccel,
+                        RoadRunner.PARAMS.inPerTick,
+                        RoadRunner.PARAMS.maxWheelVel,
+                        RoadRunner.PARAMS.minProfileAccel,
+                        RoadRunner.PARAMS.maxProfileAccel,
                         hardwareMap.getAll(LynxModule.class),
                         Arrays.asList(
                                 md.leftFront,
@@ -93,9 +93,9 @@ public final class TuningOpModes {
                         perpEncs,
                         md.imu,
                         md.voltageSensor,
-                        () -> new MotorFeedforward(RoadRunnerDrive.PARAMS.kS,
-                                RoadRunnerDrive.PARAMS.kV / RoadRunnerDrive.PARAMS.inPerTick,
-                                RoadRunnerDrive.PARAMS.kA / RoadRunnerDrive.PARAMS.inPerTick)
+                        () -> new MotorFeedforward(RoadRunner.PARAMS.kS,
+                                RoadRunner.PARAMS.kV / RoadRunner.PARAMS.inPerTick,
+                                RoadRunner.PARAMS.kA / RoadRunner.PARAMS.inPerTick)
                 );
             };
         } else {

@@ -3,16 +3,16 @@ package org.firstinspires.ftc.teamcode.commands;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
-import org.firstinspires.ftc.teamcode.util.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Mecanum;
 
 /**
  * MecanumDrive's default teleOp command, this is default way the drive listens to the controller
  */
-public class DriveCommand extends CommandBase {
+public class Drive extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final MecanumDrive drive;
+    private final Mecanum drive;
     private GamepadEx player1;
 
     /**
@@ -25,7 +25,7 @@ public class DriveCommand extends CommandBase {
      *
      * @param robot The robot instantiating this drive command
      */
-    public DriveCommand(Trabant robot) {
+    public Drive(Trabant robot) {
         this.robot = robot;
         this.drive = robot.drive;
         player1 = robot.player1;
@@ -42,7 +42,7 @@ public class DriveCommand extends CommandBase {
      * Helper function for applying dead zone
      */
     private double applyDeadZone(double input) {
-        return Math.abs(input) <= HardwareNames.INPUT_THRESHOLD ? 0.0d : input;
+        return Math.abs(input) <= Constants.INPUT_THRESHOLD ? 0.0d : input;
     }
 
     @Override

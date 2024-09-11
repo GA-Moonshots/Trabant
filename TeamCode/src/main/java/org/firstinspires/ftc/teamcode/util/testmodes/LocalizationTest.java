@@ -5,13 +5,13 @@ import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.subsystems.RoadRunnerDrive;
+import org.firstinspires.ftc.teamcode.subsystems.RoadRunner;
 
 public class LocalizationTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        if (TuningOpModes.DRIVE_CLASS.equals(RoadRunnerDrive.class)) {
-            RoadRunnerDrive drive = new RoadRunnerDrive(hardwareMap, new Pose2d(0, 0, 0));
+        if (TuningOpModes.DRIVE_CLASS.equals(RoadRunner.class)) {
+            RoadRunner drive = new RoadRunner(hardwareMap, new Pose2d(0, 0, 0));
 
             waitForStart();
 

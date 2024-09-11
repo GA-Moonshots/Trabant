@@ -9,13 +9,13 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.util.Timing;
 
 import org.firstinspires.ftc.teamcode.Trabant;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Mecanum;
 
 /**
  * Uses RoadRunner to project a new heading, build an action, then run within the execute function.
  */
 public class RotateByDegree extends CommandBase {
-    private final MecanumDrive drive;
+    private final Mecanum drive;
     protected final Trabant robot;
     protected final double timeout;
     /**

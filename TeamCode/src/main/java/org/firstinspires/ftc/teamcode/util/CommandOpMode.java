@@ -7,10 +7,6 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
-import org.firstinspires.ftc.teamcode.util.Robot;
-import org.firstinspires.ftc.teamcode.Trabant;
-
 /**
  * As opposed to the general WPILib-style Robot paradigm, FTCLib also offers a command opmode
  * for individual opmodes.

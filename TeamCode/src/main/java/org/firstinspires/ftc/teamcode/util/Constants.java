@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.util;
 
-public class HardwareNames {
+public class Constants {
+    // ---- MISC ----
+    public static final double DEFAULT_TIMEOUT = 20; // in seconds
     // ----ARM VARIABLES----
     public static final int ARM_UP_POSITION = -1000;
     public static final int ARM_DOWN_POSITION = 0;

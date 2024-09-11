@@ -41,7 +41,7 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.util.autonomous.Localizer;
-import org.firstinspires.ftc.teamcode.util.HardwareNames;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.autonomous.messages.DriveCommandMessage;
 import org.firstinspires.ftc.teamcode.util.autonomous.messages.MecanumCommandMessage;
 import org.firstinspires.ftc.teamcode.util.autonomous.messages.MecanumEncodersMessage;
@@ -56,7 +56,7 @@ import java.util.List;
  * We connect RoadRunner here by extending FTCLib's subsystem
  */
 @Config
-public class RoadRunnerDrive extends SubsystemBase {
+public class RoadRunner extends SubsystemBase {
     public static class Params {
         // IMU orientation
         // TODO: fill in these values based on
@@ -134,10 +134,10 @@ public class RoadRunnerDrive extends SubsystemBase {
         protected Rotation2d lastHeading;
 
         public DriveLocalizer() {
-            leftFront = new OverflowEncoder(new RawEncoder(RoadRunnerDrive.this.leftFront));
-            leftBack = new OverflowEncoder(new RawEncoder(RoadRunnerDrive.this.leftBack));
-            rightBack = new OverflowEncoder(new RawEncoder(RoadRunnerDrive.this.rightBack));
-            rightFront = new OverflowEncoder(new RawEncoder(RoadRunnerDrive.this.rightFront));
+            leftFront = new OverflowEncoder(new RawEncoder(RoadRunner.this.leftFront));
+            leftBack = new OverflowEncoder(new RawEncoder(RoadRunner.this.leftBack));
+            rightBack = new OverflowEncoder(new RawEncoder(RoadRunner.this.rightBack));
+            rightFront = new OverflowEncoder(new RawEncoder(RoadRunner.this.rightFront));
 
             // TODO: reverse encoders if needed
             //   leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -196,7 +196,7 @@ public class RoadRunnerDrive extends SubsystemBase {
         }
     }
 
-    public RoadRunnerDrive(HardwareMap hardwareMap, Pose2d pose) {
+    public RoadRunner(HardwareMap hardwareMap, Pose2d pose) {
         this.pose = pose;
 
         LynxFirmware.throwIfModulesAreOutdated(hardwareMap);
@@ -205,10 +205,10 @@ public class RoadRunnerDrive extends SubsystemBase {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        leftFront = hardwareMap.get(DcMotorEx.class, HardwareNames.LEFT_FRONT_NAME);
-        leftBack = hardwareMap.get(DcMotorEx.class, HardwareNames.LEFT_BACK_NAME);
-        rightBack = hardwareMap.get(DcMotorEx.class, HardwareNames.RIGHT_BACK_NAME);
-        rightFront = hardwareMap.get(DcMotorEx.class, HardwareNames.RIGHT_FRONT_NAME);
+        leftFront = hardwareMap.get(DcMotorEx.class, Constants.LEFT_FRONT_NAME);
+        leftBack = hardwareMap.get(DcMotorEx.class, Constants.LEFT_BACK_NAME);
+        rightBack = hardwareMap.get(DcMotorEx.class, Constants.RIGHT_BACK_NAME);
+        rightFront = hardwareMap.get(DcMotorEx.class, Constants.RIGHT_FRONT_NAME);
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -220,7 +220,7 @@ public class RoadRunnerDrive extends SubsystemBase {
 
         // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
-        imu = hardwareMap.get(IMU.class, HardwareNames.IMU_NAME);
+        imu = hardwareMap.get(IMU.class, Constants.IMU_NAME);
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 PARAMS.logoFacingDirection, PARAMS.usbFacingDirection));
         imu.initialize(parameters);
